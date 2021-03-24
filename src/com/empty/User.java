@@ -18,14 +18,6 @@ public class User implements Serializable{
 	private String email;
 	@Column(name="password",length = 32 , nullable = false)
 	private String password;
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	@Column(name="number",length = 32 , nullable = false)
 	private String number;
 	@Column(name="gender",length = 32 , nullable = false)
@@ -50,7 +42,13 @@ public class User implements Serializable{
 	public int getId() {
 		return id;
 	}
+	public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}
