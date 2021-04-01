@@ -23,16 +23,14 @@ import org.hibernate.Transaction;
 import com.empty.User;
 import com.hibernateUtils.hibernateUtils;
 
-//import com.mysql.jdbc.*;
 
-//import com.mysql.jdbc.Connection;
 
 /**
  * Servlet implementation class RegiterServlet
  */
 @WebServlet("/Regiter")
 public class RegiterServlet extends HttpServlet {
-	static final SessionFactory factory = hibernateUtils.getSessionFactory();
+	static final SessionFactory factory = hibernateUtils.getFactory();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -59,27 +57,10 @@ public class RegiterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
-//		System.out.println("heelo");
-//		response.setContentType("text/html;charset=UTF-8");
-//		String name = request.getParameter("name");
-//		String email = request.getParameter("email");
-//		String password = request.getParameter("password");
-//		String number = request.getParameter("number");
-//		String gender = request.getParameter("gender");
-//		
-//		System.out.println(name+'-'+password+'-'+email+'-'+number+'-'+gender);
-//		System.out.println("URI: "+ request.getRequestURI());
-//		System.out.println("URL: "+ request.getRequestURL());
-		Session  session = factory.openSession();
+
+		Session  session =hibernateUtils.getSetsion();
 		Transaction tx = session.beginTransaction();
-		
 		User empty = new User();
-//		empty.setName(name);
-//		empty.setEmail(email);
-//		empty.setNumber(number);
-//		empty.setPassword(password);
-//		empty.setGender(0);
 		try {// lấy đối tượng từ form
 			BeanUtils.populate(empty, request.getParameterMap()); // lấy dữ liệu trên form về đối tượng
 			System.out.println(empty.toString());
@@ -89,17 +70,7 @@ public class RegiterServlet extends HttpServlet {
 		}
 		session.save(empty);
 		tx.commit();
-// kết nối với DB
-//		String url = "jdbc:mysql://localhost:3306/my_demo";
-//		String userName = "root", psw = "";
-//	    try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            Connection connection = DriverManager.getConnection(url, userName, psw);
-//            System.out.print("đã kết nối thành công");
-//        } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-////            throw new Throwable("Can't create connection");
-//        }
+// 		sission.getTransaction().commit;
 		doGet(request, response);
 
 	}

@@ -10,9 +10,10 @@ import javax.persistence.Id;
 @Entity(name = "user")
 public class User implements Serializable{
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name="name",length = 32 , nullable = false)
+	private Integer id;
+	@Column(name="name",length = 255 , nullable = false)
 	private String name;
 	@Column(name="email",length = 32 , nullable = false)
 	private String email;
@@ -21,11 +22,16 @@ public class User implements Serializable{
 	@Column(name="number",length = 32 , nullable = false)
 	private String number;
 	@Column(name="gender",length = 32 , nullable = false)
-	private int gender;
-	public User()  {
-		
+	private Integer gender;
+	@Column(name="role",length = 32 , nullable = true)
+	private Integer role = 0;
+	
+	public Integer getId() {
+		return id;
 	}
-
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -38,19 +44,11 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public int getId() {
-		return id;
-	}
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getNumber() {
 		return number;
@@ -58,20 +56,25 @@ public class User implements Serializable{
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public int getGender() {
+	public Integer getGender() {
 		return gender;
 	}
-	public void setGender(int gender) {
+	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
-
+	public Integer getRole() {
+		return role;
+	}
+	public void setRole(Integer role) {
+		this.role = role;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", number="
-				+ number + ", gender=" + gender + "]";
+				+ number + ", gender=" + gender + ", role=" + role + "]";
 	}
-
-
+	
+	
 	
 		
 }
