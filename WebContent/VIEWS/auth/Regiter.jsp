@@ -13,7 +13,7 @@
 
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="#">PT15304-UD</a>
+    <a class="navbar-brand" href="admin/user">PT15304-UD</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -41,7 +41,7 @@
 
 <div class="col-6 offset-3">
 
-<form method="post" action="/Myweb/Regiter"> <!-- trỏ tới file java RegiterServlet với đường dẫn đã dăng ký -->
+<form method="post" action="Regiter"> <!-- trỏ tới file java RegiterServlet với đường dẫn đã dăng ký -->
 
   <div class="mt-3">
 

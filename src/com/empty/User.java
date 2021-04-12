@@ -1,13 +1,24 @@
 package com.empty;
-
+import com.empty.Post;
 import java.io.Serializable;
 
+import javax.management.Query;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-@Entity(name = "user")
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+import java.util.List;
+@Entity
+@Table(name = "user")
+@NamedQueries(
+@NamedQuery(query= "select obj FROM User obj WHERE obj.isActive =null", name="user.getListActive"))
 public class User implements Serializable{
 	@Id
 	@Column(name = "id")
@@ -17,13 +28,30 @@ public class User implements Serializable{
 	private String name;
 	@Column(name="email",length = 32 , nullable = false)
 	private String email;
-	@Column(name="password",length = 32 , nullable = false)
+	@Column(name="password",length = 32 )
 	private String password;
 	@Column(name="number",length = 32 , nullable = false)
 	private String number;
 	@Column(name="gender",length = 32 , nullable = false)
 	private Integer gender;
 	@Column(name="role",length = 32 , nullable = true)
+	@OneToMany(mappedBy = "userP")
+	private List<Post> posts;
+	@Column(name = "isActive")
+	private String isActive;
+	
+	public String getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 	private Integer role = 0;
 	
 	public Integer getId() {

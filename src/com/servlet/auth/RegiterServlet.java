@@ -20,6 +20,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.DAO.UserDAO;
 import com.empty.User;
 import com.hibernateUtils.hibernateUtils;
 
@@ -32,6 +33,7 @@ import com.hibernateUtils.hibernateUtils;
 public class RegiterServlet extends HttpServlet {
 	static final SessionFactory factory = hibernateUtils.getFactory();
 	private static final long serialVersionUID = 1L;
+	private UserDAO userDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,6 +41,7 @@ public class RegiterServlet extends HttpServlet {
     public RegiterServlet() {
         super();
         // TODO Auto-generated constructor stub
+        userDAO = new UserDAO();
     }
 
 	/**
@@ -63,15 +66,14 @@ public class RegiterServlet extends HttpServlet {
 		User empty = new User();
 		try {// lấy đối tượng từ form
 			BeanUtils.populate(empty, request.getParameterMap()); // lấy dữ liệu trên form về đối tượng
-			System.out.println(empty.toString());
+//			System.out.println(empty.toString());
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		session.save(empty);
-		tx.commit();
-// 		sission.getTransaction().commit;
-		doGet(request, response);
+		userDAO.insertUser(empty);
+		response.sendRedirect("admin/user");
+//		doGet(request, response);
 
 	}
 	@Override
