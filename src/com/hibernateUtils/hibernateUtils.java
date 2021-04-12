@@ -24,16 +24,4 @@ public class hibernateUtils {
 		}
 		return factory;
 	}
-	public static SessionFactory getSessionFactory() {
-		try {
-			Configuration  cfg = new Configuration();
-			cfg.configure("hibernate.cfg.xml");
-			return cfg.buildSessionFactory(); //trả về đối tượng sess
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-
-		}
-		return null;
-	}
 }
