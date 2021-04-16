@@ -12,31 +12,6 @@
 
 </head>
 <body>
-
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-		<div class="container-fluid">
-
-			<a class="navbar-brand" href="#">My Demo</a>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-
-				</ul>
-
-			</div>
-
-		</div>
-
-	</nav>
-
-
-
 	<div>
 
 		<form class="col-6 offset-3 mt-5" method="POST"
