@@ -1,11 +1,15 @@
 package com.DAO;
 
 import org.hibernate.Session;
-import javax.persistence.Query;
+
 //import javax.transaction.Transaction;
 //import javax.transaction.Transactional;
 import org.hibernate.Transaction;
 import java.util.List;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import com.empty.User;
 import com.hibernateUtils.hibernateUtils;
 
@@ -15,9 +19,9 @@ public class UserDAO {
 
 //	private static final String User = null;
 	private Session session;
-	
+
 	public UserDAO() {
-		 this.session = hibernateUtils.getSetsion();
+		this.session = hibernateUtils.getSetsion();
 	}
 
 	public User insertUser(User user) {
@@ -37,10 +41,12 @@ public class UserDAO {
 	}
 
 	public List<User> paninate(int offSet, int perPage) {
-		String hql = "FROM User";
-		Query query = this.session.createQuery(hql);
-		query.setFirstResult(offSet);
-		query.setMaxResults(perPage + offSet);
+//		String hql = "FROM User";
+//		Query query = this.session.createQuery(hql);
+//		query.setFirstResult(offSet);
+//		query.setMaxResults(perPage + offSet);
+		TypedQuery<User> query = session.getNamedQuery("user.getListActive");
+//	     query.setParameter("name","amit");   nếu cần
 		List<User> result = query.getResultList();
 		return result;
 	}
@@ -78,9 +84,9 @@ public class UserDAO {
 
 	public User loginU(String u, String p) {
 		String hql = "SELECT e FROM User e WHERE e.email = :email AND e.password = :password ";
-		
+
 		Query query = this.session.createQuery(hql);
-		System.out.println(u+p);
+//		System.out.println(u+p);
 		query.setParameter("email", u);
 		query.setParameter("password", p);
 		User empty;
@@ -92,7 +98,6 @@ public class UserDAO {
 			// TODO: handle exception
 			System.out.println("không tìm thấy");
 			e.printStackTrace();
-			
 		}
 		return null;
 	}

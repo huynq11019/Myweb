@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 		}else {
 			// đi vào trang chủ
 			HttpSession session = request.getSession();
-			session.setAttribute("user", entity);
+			session.setAttribute("user", entity); //lưu thông tin vào session
 			response.sendRedirect(request.getContextPath()+"/admin/user");
 		}
 //		doGet(request, response);
